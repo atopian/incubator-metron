@@ -126,6 +126,58 @@
           "subsection-name": "subsection-general-indexing"
         },
         {
+          "config": "metron-env/es_ssl",
+          "subsection-name": "subsection-general-indexing"
+        },
+        {
+          "config": "metron-env/es_use_auth",
+          "subsection-name": "subsection-general-indexing"
+        },
+        {
+          "config": "metron-env/es_username",
+          "subsection-name": "subsection-general-indexing",
+          "depends-on": [
+            {
+              "configs":[
+                "metron-env/es_use_auth"
+              ],
+              "if": "${metron-env/es_use_auth} === true",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "metron-env/es_password",
+          "subsection-name": "subsection-general-indexing",
+          "depends-on": [
+            {
+              "configs":[
+                "metron-env/es_use_auth"
+              ],
+              "if": "${metron-env/es_use_auth} === true",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        },
+        {
           "config": "metron-env/repo_type",
           "subsection-name": "subsection-repo"
         },
@@ -202,6 +254,30 @@
           "type": "text-field"
         }
       },
+      {
+        "config": "metron-env/es_ssl",
+        "widget": {
+          "type": "toggle"
+        }
+      },
+      {
+        "config": "metron-env/es_use_auth",
+        "widget": {
+          "type": "toggle"
+        }
+      },
+      {
+        "config": "metron-env/es_username",
+        "widget": {
+          "type": "text-field"
+		  }
+      },
+      {
+        "config": "metron-env/es_password",
+        "widget": {
+          "type": "password"
+		  }
+		},
       {
         "config": "metron-env/repo_type",
         "widget": {

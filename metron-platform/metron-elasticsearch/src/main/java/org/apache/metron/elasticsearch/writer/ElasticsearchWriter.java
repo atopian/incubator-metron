@@ -32,6 +32,7 @@ import org.elasticsearch.action.index.IndexRequestBuilder;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
+import org.elasticsearch.shield.ShieldPlugin;
 import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -64,6 +65,14 @@ public class ElasticsearchWriter implements BulkMessageWriter<JSONObject>, Seria
     settingsBuilder.put("cluster.name", globalConfiguration.get("es.clustername"));
     settingsBuilder.put("client.transport.ping_timeout","500s");
 
+	 if (globalConfiguration.get("es.use_auth") == "True") {
+		 settingsBuilder.put("shield.user", globalConfiguration.get("es.username") + ":" + globalConfiguration.get("es.password"));
+	 }
+
+	 if (globalConfiguration.get("es.ssl") == "True") {
+		 settingsBuilder.put("shield.transport.ssl", "true");
+	 }
+
     if (optionalSettings != null) {
 
       settingsBuilder.put(optionalSettings);
@@ -74,7 +83,10 @@ public class ElasticsearchWriter implements BulkMessageWriter<JSONObject>, Seria
 
     try{
       for(HostnamePort hp : getIps(globalConfiguration)) {
-        client = TransportClient.builder().settings(settings).build()
+        client = TransportClient.builder()
+			       .addPlugin(ShieldPlugin.class)
+					 .settings(settings)
+					 .build()
                 .addTransportAddress(
                         new InetSocketTransportAddress(InetAddress.getByName(hp.hostname), hp.port)
                 );

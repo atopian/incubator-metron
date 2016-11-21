@@ -134,6 +134,60 @@
         <description>Elasticsearch HTTP port. (9200)</description>
         <display-name>Elasticsearch HTTP port</display-name>
     </property>
+    <property>
+        <name>es_ssl</name>
+        <value>false</value>
+        <description>Enable SSL for Elasticsearch Connection</description>
+        <display-name>Enable SSL</display-name>
+        <value-attributes>
+            <overridable>false</overridable>
+            <type>value-list</type>
+            <entries>
+                <entry>
+                    <value>true</value>
+						  <label>Enabled</label>
+                </entry>
+                <entry>
+                    <value>false</value>
+                    <label>Disabled</label>
+                </entry>
+            </entries>
+            <selection-cardinality>1</selection-cardinality>
+        </value-attributes>
+    </property>
+    <property>
+        <name>es_use_auth</name>
+        <description>Specify a username and password to connect to elasticsearch</description>
+        <display-name>Authenticate to Elasticsearch</display-name>
+        <value>false</value>
+        <value-attributes>
+            <overridable>false</overridable>
+            <type>value-list</type>
+            <entries>
+                <entry>
+                    <value>true</value>
+                    <label>Yes</label>
+                </entry>
+                <entry>
+                    <value>false</value>
+                    <label>No</label>
+                </entry>
+            </entries>
+            <selection-cardinality>1</selection-cardinality>
+        </value-attributes>
+    </property>
+    <property>
+        <name>es_username</name>
+        <value></value>
+        <description>Username for Elasticsearch connection</description>
+        <display-name>Username</display-name>
+    </property>
+    <property>
+        <name>es_password</name>
+        <value></value>
+        <description>Password for Elasticsearch connection</description>
+        <display-name>Password</display-name>
+    </property>
     <property require-input = "true">
         <name>storm_rest_addr</name>
         <display-name>Storm Rest Server Address</display-name>
@@ -200,7 +254,11 @@
 {
 "es.clustername": "{{ es_cluster_name }}",
 "es.ip": "{{ es_url }}",
-"es.date.format": "yyyy.MM.dd.HH"
+"es.date.format": "yyyy.MM.dd.HH",
+"es.ssl": "{{ es_ssl }}",
+"es.use_auth": "{{ es_use_auth }}",
+"es.username": "{{ es_username }}",
+"es.password": "{{ es_password }}"
 }
         </value>
         <value-attributes>

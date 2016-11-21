@@ -20,7 +20,19 @@
         <version>0.3.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>elasticsearch-shaded</artifactId>
+	 <artifactId>elasticsearch-shaded</artifactId>
+    <repositories>
+        <repository>
+            <id>elasticsearch-releases</id>
+            <url>https://maven.elasticsearch.org/releases</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
     <dependencies>
         <dependency>
             <groupId>com.google.guava</groupId>
@@ -30,6 +42,11 @@
         <dependency>
             <groupId>org.elasticsearch</groupId>
             <artifactId>elasticsearch</artifactId>
+            <version>${global_elasticsearch_version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.elasticsearch.plugin</groupId>
+            <artifactId>shield</artifactId>
             <version>${global_elasticsearch_version}</version>
         </dependency>
     </dependencies>
