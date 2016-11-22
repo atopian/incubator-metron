@@ -156,6 +156,30 @@
         </value-attributes>
     </property>
     <property>
+        <name>es_truststore_path</name>
+        <value></value>
+        <description>Local path to the truststore for Elasticsearch</description>
+        <display-name>Truststore Path</display-name>
+    </property>
+    <property>
+        <name>es_truststore_password</name>
+        <value></value>
+        <description>Password for the truststore for Elasticsearch</description>
+        <display-name>Truststore Password</display-name>
+    </property>
+    <property>
+        <name>es_keystore_path</name>
+        <value></value>
+        <description>Local path to the keystore for Elasticsearch</description>
+        <display-name>Keystore Path</display-name>
+    </property>
+    <property>
+        <name>es_keystore_password</name>
+        <value></value>
+        <description>Password for the keystore for Elasticsearch</description>
+        <display-name>Keystore Password</display-name>
+    </property>
+    <property>
         <name>es_use_auth</name>
         <description>Specify a username and password to connect to elasticsearch</description>
         <display-name>Authenticate to Elasticsearch</display-name>
@@ -256,6 +280,10 @@
 "es.ip": "{{ es_url }}",
 "es.date.format": "yyyy.MM.dd.HH",
 "es.ssl": "{{ es_ssl }}",
+"es.truststore.path": "{{ es_truststore_path }}",
+"es.truststore.password": "{{ es_truststore_password }}",
+"es.keystore.path": "{{ es_keystore_path }}",
+"es.keystore.password": "{{ es_keystore_password }}",
 "es.use_auth": "{{ es_use_auth }}",
 "es.username": "{{ es_username }}",
 "es.password": "{{ es_password }}"

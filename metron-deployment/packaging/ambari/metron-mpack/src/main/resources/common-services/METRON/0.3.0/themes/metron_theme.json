@@ -130,6 +130,94 @@
           "subsection-name": "subsection-general-indexing"
         },
         {
+          "config": "metron-env/es_keystore_path",
+          "subsection-name": "subsection-general-indexing",
+          "depends-on": [
+            {
+              "configs":[
+                "metron-env/es_ssl"
+              ],
+              "if": "${metron-env/es_ssl} === true",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "metron-env/es_keystore_password",
+          "subsection-name": "subsection-general-indexing",
+          "depends-on": [
+            {
+              "configs":[
+                "metron-env/es_ssl"
+              ],
+              "if": "${metron-env/es_ssl} === true",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "metron-env/es_truststore_path",
+          "subsection-name": "subsection-general-indexing",
+          "depends-on": [
+            {
+              "configs":[
+                "metron-env/es_ssl"
+              ],
+              "if": "${metron-env/es_ssl} === true",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "config": "metron-env/es_truststore_password",
+          "subsection-name": "subsection-general-indexing",
+          "depends-on": [
+            {
+              "configs":[
+                "metron-env/es_ssl"
+              ],
+              "if": "${metron-env/es_ssl} === true",
+              "then": {
+                "property_value_attributes": {
+                  "visible": true
+                }
+              },
+              "else": {
+                "property_value_attributes": {
+                  "visible": false
+                }
+              }
+            }
+          ]
+        },
+        {
           "config": "metron-env/es_use_auth",
           "subsection-name": "subsection-general-indexing"
         },
@@ -260,6 +348,30 @@
           "type": "toggle"
         }
       },
+      {
+        "config": "metron-env/es_keystore_path",
+        "widget": {
+          "type": "text-field"
+		  }
+      },
+      {
+        "config": "metron-env/es_keystore_password",
+        "widget": {
+          "type": "password"
+		  }
+		},
+      {
+        "config": "metron-env/es_truststore_path",
+        "widget": {
+          "type": "text-field"
+		  }
+      },
+      {
+        "config": "metron-env/es_truststore_password",
+        "widget": {
+          "type": "password"
+		  }
+		},
       {
         "config": "metron-env/es_use_auth",
         "widget": {

@@ -64,13 +64,21 @@ public class ElasticsearchWriter implements BulkMessageWriter<JSONObject>, Seria
     Settings.Builder settingsBuilder = Settings.settingsBuilder();
     settingsBuilder.put("cluster.name", globalConfiguration.get("es.clustername"));
     settingsBuilder.put("client.transport.ping_timeout","500s");
-
-	 if (globalConfiguration.get("es.use_auth") == "True") {
+ 
+	 if (globalConfiguration.get("es.use_auth").equals("True")) {
+		 LOG.info("Using auth in elasticsearch with user: " + globalConfiguration.get("es.username"));
 		 settingsBuilder.put("shield.user", globalConfiguration.get("es.username") + ":" + globalConfiguration.get("es.password"));
 	 }
 
-	 if (globalConfiguration.get("es.ssl") == "True") {
+	 if (globalConfiguration.get("es.ssl").equals("True")) {
+		 LOG.info("Enabling SSL for elasticsearch");
+       settingsBuilder.put("shield.ssl.keystore.path", globalConfiguration.get("es.keystore.path"));
+       settingsBuilder.put("shield.ssl.keystore.password", globalConfiguration.get("es.keystore.password"));
+       settingsBuilder.put("shield.ssl.truststore.path", globalConfiguration.get("es.truststore.path"));
+       settingsBuilder.put("shield.ssl.truststore.password", globalConfiguration.get("es.truststore.password"));
 		 settingsBuilder.put("shield.transport.ssl", "true");
+	 } else {
+		 LOG.info("Not enabling SSL for elasticsearch");
 	 }
 
     if (optionalSettings != null) {
